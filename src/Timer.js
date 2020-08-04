@@ -11,6 +11,16 @@ class Timer extends Component {
   }
 
   //Your code here
+  componentDidUpdate() {
+    this.timer.current.style.background = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
+  }
 
   componentDidMount() {
     this.interval = setInterval(
@@ -31,6 +41,7 @@ class Timer extends Component {
         <button onClick={this.stopClock}>Stop</button>
         <aside className="logText">{logText}</aside>
         <small onClick={this.handleClose}>X</small>
+    
       </section>
     );
   }
